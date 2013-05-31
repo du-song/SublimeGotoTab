@@ -1,6 +1,6 @@
 [
 	{
-		"caption": "Tab Filter",
-		"command": "tab_filter"
+		"caption": "Goto Tab",
+		"command": "goto_tab"
 	}
 ]
