@@ -1,5 +1,0 @@
-[
-	{ "keys": ["shift+alt+p"],
-		"command": "tab_filter" 
-	}
-]

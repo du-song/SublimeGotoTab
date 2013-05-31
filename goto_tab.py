@@ -6,10 +6,10 @@ import os
 
 def get_setting(key):
 	if key is not None:
-		settings = sublime.load_settings("tabfilter.sublime-settings")
+		settings = sublime.load_settings("goto_tab.sublime-settings")
 		return settings.get(key)
 
-class TabFilterCommand(sublime_plugin.WindowCommand):
+class GotoTabCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		window = sublime.active_window()
 		views = window.views()
@@ -39,23 +39,24 @@ class TabFilterCommand(sublime_plugin.WindowCommand):
 						if view.file_name() is not None:
 							name = view.file_name()
 
-			captions = []
+			# captions = []
 
-			if window.get_view_index(active_view) == window.get_view_index(view):
-				captions.append("Current File")
+			# if window.get_view_index(active_view) == window.get_view_index(view):
+			# 	captions.append("Current File")
 
-			if view.file_name() is None:
-				captions.append("Unsaved File")
-			elif view.is_dirty():
-				captions.append("Unsaved Changes")
+			# if view.file_name() is None:
+			# 	captions.append("Unsaved File")
+			# elif view.is_dirty():
+			# 	captions.append("Unsaved Changes")
 
-			if view.is_read_only():
-				caption.append("Read Only")
+			# if view.is_read_only():
+			# 	caption.append("Read Only")
 
-			caption = ", ".join(captions)
-			
+			# caption = ", ".join(captions)
+			if view.file_name() is None or view.is_dirty():
+				name += "*"
 			self.view_list.append(view)
-			self.name_list.append([name, caption])
+			self.name_list.append([name])
 
 		window.show_quick_panel(self.name_list, self._on_done)
 
